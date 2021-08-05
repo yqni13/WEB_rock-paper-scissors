@@ -1,45 +1,40 @@
-function gameRPS(choice) {
-    let resultMSG = document.getElementById("game_result")
-    console.log("halloo");
-    // choice(rock) == 0
-    // choice(paper) == 1
-    // choice(scissors) == 2
+let counterUser = 0;
+let counterAI = 0;
+
+function gameRPS(user) {
+    // user(0) == rock
+    // user(1) == paper
+    // user(2) == scissors
 
     // call random AI decision
-    let randomChoice = Math.floor(Math.random() * 3);
+    let ai = Math.floor(Math.random() * 3);
+    document.getElementById("game_result").style.fontWeight = "bold";
 
-    // compare 'weapons'
-    if (choice == randomChoice) {
-        disableOnclick();
-        console.log("unentschieden");
-        resultMSG.innerHTML = "THE GAME WAS A DRAW";
-        resultMSG.className = "game_tie";
-        resultMSG.style.fontWeight = "bold";
+    // compare choices
+    if (user == ai) {
+        resultTIE();
+    } else if ((user == 0 && ai == 2) || (user == 1 && ai == 0) || (user == 2 && ai ==1)) {
+        resultWIN();
+    } else {
+        resultLOSE();
     }
-
-    setTimeout(function() {
-        resultMSG.className = "";
-        resultMSG.style.fontWeight = "normal"
-        resultMSG.innerHTML = "Choose your weapon!"
-        enableOnclick();
-    }, 5000);
-
-    // call out winner and increase respective counter
-    let counterUser = document.getElementById('counter_user').value;
-    document.getElementById('counter_user').value = counterUser+1;
-    // or:
-    let counterAI = document.getElementById('counter_ai').value;
-    document.getElementById('counter_ai').value = counterAI+1;
 }
 
-function disableOnclick() {
-    document.getElementById('rock').onclick = "";
-    document.getElementById('paper').onclick = "";
-    document.getElementById('scissors').onclick = "";
+function resultWIN() {
+    document.getElementById("game_result").innerHTML = "YOU WON!";
+    document.getElementById("game_result").className = "game_win";
+    ++counterUser;
+    document.getElementById('counter_user').innerHTML = "User: " + counterUser;
 }
 
-function enableOnclick() {
-    document.getElementById('rock').onclick = function() { gameRPS(0); };
-    document.getElementById('paper').onclick = function() { gameRPS(1); };
-    document.getElementById('scissors').onclick = function() { gameRPS(2); };
+function resultLOSE() {
+    document.getElementById("game_result").innerHTML = "YOU LOST!";
+    document.getElementById("game_result").className = "game_lose";
+    ++counterAI;
+    document.getElementById('counter_ai').innerHTML = "AI: " + counterAI;
+}
+
+function resultTIE() {
+    document.getElementById("game_result").innerHTML = "THE GAME WAS A DRAW";
+    document.getElementById("game_result").className = "game_tie";
 }
