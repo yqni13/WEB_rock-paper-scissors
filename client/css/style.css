@@ -20,7 +20,7 @@ body {
     width: 70%;
     padding: 5%;
     border: 5px solid #6A0080;
-    background-color: white;
+    background-color: #CCD4FF;
     box-shadow:
         0 0 5px #6A0080,
         0 0 10px #6A0080,
@@ -89,17 +89,6 @@ p {
 #game_right {
     text-align: right;
 }
-
-/* #game_score .game_sides {
-    font-size: 3em;
-    color: black;
-    display: inline-block;
-    padding: 12px 20px;
-    background: #EEE;
-    border-radius: 40px;
-} */
-
-
 
 .game_win {
     background: #00CC22;
